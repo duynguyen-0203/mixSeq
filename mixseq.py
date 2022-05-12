@@ -3,7 +3,7 @@ import random
 from tqdm import tqdm
 from typing import List
 
-from utils import read_data, save_data, init_logger
+from utils import read_data, save_data, init_logger, set_seed
 
 
 def resize(src_data: List[str], tgt_data: List[str], new_size: int):
@@ -46,6 +46,7 @@ def generate_sample(src_data: List[str], tgt_data: List[str], aug_size: int, is_
 
 
 def mix_seq(args):
+    set_seed(args.seed)
     logger, path = init_logger(args)
     org_src_data = read_data(os.path.join(args.data_path, 'train.en'))
     org_tgt_data = read_data(os.path.join(args.data_path, 'train.vi'))
